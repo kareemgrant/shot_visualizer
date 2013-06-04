@@ -15,29 +15,8 @@ class Play
 
 
   def self.find_shots(data)
-
-    if data[:player]
-      results = shots_by_player(data)
-    else
-      results = shots_by_team(data)
-    end
-
-
-    # create json obj -> should another object be responsible for this???
-    # pass it the results and then I magically get back a well formed json
-    # obj
-    # hmmm, I think so...
-
-    shots = []
-
-    results.each do |play|
-      obj = {}
-      obj["coordinates"] = play.coordinates
-      obj["result"] = play.result
-      shots << obj
-    end
-
-    shots
+    results = shots_by_player(data)
+    format_response(results)
   end
 
   def self.shots_by_player(data)
@@ -48,14 +27,15 @@ class Play
             .or({:result => "made"}, {:result => "missed"})
   end
 
-  # def self.shots_by_team(data)
-  #   team = data[:team].upcase
-  #   binding.pry
-
-
-  #   Play.or({'teams.home.abbr' => team}, {'teams.away.abbr'=> team})
-  #       .and({:etype.ne => "free throw"},{:season => data[:season]})
-  #       .or({:result => "made"}, {:result => "missed"})
-  # end
+  def self.format_response(results)
+    shots = []
+    results.each do |play|
+      obj = {}
+      obj["coordinates"] = play.coordinates
+      obj["result"] = play.result
+      shots << obj
+    end
+    shots
+  end
 
 end

@@ -1,6 +1,6 @@
 class Api::V1::TeamsController < Api::V1::BaseController
   def index
-
-    respond_with json: []
+    @teams = Team.fetch_all
+    respond_with @teams
   end
 end
