@@ -17,10 +17,16 @@ test:
         consistency: :strong
         max_retries: 1
         retry_interval: 0
+
+
 production:
   sessions:
     default:
-      uri: <%= ENV['MONGOHQ_URL'] %>
+      hosts:
+        - dharma.mongohq.com:10087
+      username: admin
+      password: <%= ENV["MONGOHQ_PASSWORD"] %>
+      database: shot_visualizer
       options:
         skip_version_check: true
         safe: true
