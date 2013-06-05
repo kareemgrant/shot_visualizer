@@ -17,6 +17,7 @@ test:
         consistency: :strong
         max_retries: 1
         retry_interval: 0
+
 production:
   sessions:
     default:

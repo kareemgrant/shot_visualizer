@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe Team do
 
-
-
   before do
     @player = Player.create!(name: "john wall")
     @team = Team.create!(abbr: "WAS")
