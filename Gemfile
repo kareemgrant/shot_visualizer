@@ -14,7 +14,9 @@ end
 
 gem 'jquery-rails'
 gem "mongoid"
-
+gem 'bootstrap-sass'
+gem "haml-rails"
+gem 'gon'
 
 group :development, :test do
   gem "shoulda-matchers"

@@ -1,4 +1,5 @@
 class Play
+
   include Mongoid::Document
   field :period, type: String
   field :seconds,  type: Integer
@@ -13,14 +14,18 @@ class Play
 
   belongs_to :game
 
-
   def self.find_shots(data)
     results = shots_by_player(data)
-    format_response(results)
+    results.first[:error].present? ? results : format_response(results)
   end
 
   def self.shots_by_player(data)
+    shots = query_for_player_shots(data)
+    results = shots.to_ary
+    results.empty? ? results << {error: "no results found"} : results
+  end
 
+  def self.query_for_player_shots(data)
     Play.and({"eplayer.name"=>data[:player]},
             {:etype.ne => "free throw"},
             {:season => data[:season]})
@@ -28,14 +33,7 @@ class Play
   end
 
   def self.format_response(results)
-    shots = []
-    results.each do |play|
-      obj = {}
-      obj["coordinates"] = play.coordinates
-      obj["result"] = play.result
-      shots << obj
-    end
-    shots
+    ResponseFormatter.format_plays(results)
   end
 
 end

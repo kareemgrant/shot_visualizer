@@ -33,6 +33,8 @@ GEM
     better_errors (0.9.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    bootstrap-sass (2.3.1.3)
+      sass (~> 3.2)
     builder (3.0.4)
     bullet (4.6.0)
       uniform_notifier
@@ -67,6 +69,9 @@ GEM
       railties (>= 3.0.0)
     ffi (1.8.1)
     formatador (0.2.4)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     guard (1.8.0)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -76,6 +81,13 @@ GEM
     guard-rspec (3.0.1)
       guard (>= 1.8)
       rspec (~> 2.13)
+    haml (4.0.3)
+      tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     heroku (2.39.4)
       heroku-api (~> 0.3.7)
       launchy (>= 0.3.2)
@@ -232,6 +244,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  bootstrap-sass
   bullet
   cane
   capybara
@@ -239,7 +252,9 @@ DEPENDENCIES
   coffee-rails-source-maps
   database_cleaner
   factory_girl_rails
+  gon
   guard-rspec
+  haml-rails
   heroku
   jquery-rails
   launchy
