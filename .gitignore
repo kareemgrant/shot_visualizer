@@ -29,3 +29,6 @@ solr/data
 
 # ignore coverage file
 coverage/
+
+# ignore dotenv
+.env
