@@ -18,6 +18,7 @@
       = link_to "2nd Quarter", "#", id: "filter_period_2", class: "filter_period"
       = link_to "3rd Quarter", "#", id: "filter_period_3", class: "filter_period"
       = link_to "4th Quarter", "#", id: "filter_period_4", class: "filter_period"
+      = link_to "All Quarters", "#", id: "filter_period_all", class: "filter_period"
 
     #chart
 
@@ -25,7 +26,6 @@
     %h4 Shot Distribution
 
     #donut-chart
-
 
 
   :javascript
@@ -42,9 +42,15 @@
                  .domain([0, 50])
                  .range([500, 0])
 
+    var jitter = d3.scale.linear()
+                 .domain([0, 1])
+                 .range([-5, 5])
+
     var color = d3.scale.ordinal()
                  .domain(["missed", "made"])
                  .range(["red", "green"])
+
+    var pie_color = d3.scale.category20c();
 
     function render(shot_data){
 
@@ -54,8 +60,8 @@
       shots.enter()
         .append("circle")
         .attr("class", "shot")
-        .attr("cx", function(d){return xPos(d.coordinates.x) })
-        .attr("cy", function(d){return d.coordinates.y * 10;})
+        .attr("cx", function(d){return xPos(d.coordinates.x) + jitter(Math.random()) })
+        .attr("cy", function(d){return d.coordinates.y * 10 + jitter(Math.random());})
         .attr("r", 10)
         .attr("fill", function(d) { return color(d.result) })
         .transition().duration(1000).attr("r", 4);
@@ -70,11 +76,13 @@
 
     $(".filter_period").click( function(e){
       e.preventDefault();
+
       var qtr = $(this).attr("id").split("_").pop();
       console.log("filtering qtr data" + qtr);
 
       qtrData = $.map(all_shot_data, function(el) {
-        if (el.period === qtr) {
+
+        if ((qtr== "all") || (el.period === qtr)) {
           return el;
         }
       });
@@ -83,15 +91,60 @@
 
     })
 
-    Morris.Donut({
-      element: 'donut-chart',
-      data: [
-        {label: "Jump Shots", value: 12},
-        {label: "Layups", value: 30},
-        {label: "Pullup Jumpers", value: 20},
-        {label: "Dunks", value: 10}
-      ]
+
+    var summary = {};
+
+    for(var i = 0; i < all_shot_data.length; i++){ 
+      var shot = all_shot_data[i]; 
+
+      if (shot.result == "made") {
+        v = summary[shot.shot_type] || 0;
+        summary[shot.shot_type] = v + 1;
+      }
+    }
+    summary = $.map(summary, function(count, type) { return { count: count, type: type } })
+    .sort(function(a, b){
+      if (b.count > a.count){
+        return 1;
+      }
+      else if (b.count < a.count){
+        return -1;
+      }else{
+        return 0;
+      }
     });
 
+    summary = [summary[0], summary[1], summary[2], summary[3], summary[4]]
 
+    var width = 380,
+        height = 350,
+        radius = Math.min(width, height) / 2;
 
+    var arc = d3.svg.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(radius - 70);
+
+    var pie = d3.layout.pie()
+    .sort(null)
+    .value(function(d) { return d.count; });
+
+    var svg = d3.select("#donut-chart").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    var g = svg.selectAll(".arc")
+      .data(pie(summary))
+      .enter().append("g")
+      .attr("class", "arc");
+
+    g.append("path")
+      .attr("d", arc)
+      .style("fill", function(d, i) { return pie_color(i); });
+
+    g.append("text")
+      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .style("text-anchor", "middle")
+      .text(function(d) { console.log(d); return d.data.type; });
