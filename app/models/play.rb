@@ -16,7 +16,7 @@ class Play
 
   def self.find_shots(data)
     results = shots_by_player(data)
-    results.first[:error].present? ? results : format_response(results)
+    results.first[:error].present? ? results : format_response(results, data)
   end
 
   def self.shots_by_player(data)
@@ -32,8 +32,8 @@ class Play
             .or({:result => "made"}, {:result => "missed"})
   end
 
-  def self.format_response(results)
-    ResponseFormatter.format_plays(results)
+  def self.format_response(results, data)
+    ResponseFormatter.format_plays(results, data)
   end
 
 end

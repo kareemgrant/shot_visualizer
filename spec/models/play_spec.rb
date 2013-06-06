@@ -72,10 +72,11 @@ describe Play do
       end
 
     it "should successfully call ResponseFormatter method" do
+      params = {}
       ResponseFormatter.stub(:format_plays).and_return
-      ResponseFormatter.should_receive(:format_plays).with([@play])
+      ResponseFormatter.should_receive(:format_plays).with(params, [@play])
 
-      Play.format_response([@play])
+      Play.format_response(params, [@play])
     end
   end
 

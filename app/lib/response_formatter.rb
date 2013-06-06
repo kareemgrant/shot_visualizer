@@ -1,6 +1,6 @@
 class ResponseFormatter
 
-  def self.format_plays(results)
+  def self.format_plays(results, query)
     shots = []
     results.each do |play|
       obj = {}
@@ -11,6 +11,12 @@ class ResponseFormatter
       obj["period"] = play.period
       shots << obj
     end
-    shots
+
+
+    data = {}
+    data[:shots] = shots
+    data[:player] = {name: query[:player], season: query[:season]}
+    data
+
   end
 end
