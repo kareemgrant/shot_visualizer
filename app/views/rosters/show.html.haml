@@ -1,0 +1,14 @@
+%h1=@roster.team.abbr
+
+%h3 
+  Roster for #{@roster.season}
+
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Player Name
+  %tbody
+    - @roster.players.each do |player|
+      %tr
+        %td
+          =link_to player["name"].titleize, shotcharts_path(id: player["player_id"], player: player["name"], season: @roster.season)

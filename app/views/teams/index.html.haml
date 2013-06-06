@@ -1,0 +1,17 @@
+%h3
+  Select a Team and a Year
+
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Team
+      %th Rosters
+    %tbody
+      - @teams.each do |team|
+        %tr
+          %td= team.abbr
+          %td
+            =link_to "2008-2009", roster_path(id: team.id, season: "2008-2009")
+
+            %a{:href => "#"} 2007-2008
+            %a{:href => "#"} 2006-2007
