@@ -1,5 +1,5 @@
 %h3
-  Select a Team and a Year
+  Select a Team and Season
 
 %table.table.table-striped.table-bordered
   %thead
@@ -13,5 +13,5 @@
           %td
             =link_to "2008-2009", roster_path(id: team.id, season: "2008-2009")
 
-            %a{:href => "#"} 2007-2008
-            %a{:href => "#"} 2006-2007
+            =link_to "2007-2008", roster_path(id: team.id, season: "2007-2008")
+            =link_to "2006-2007", roster_path(id: team.id, season: "2006-2007")

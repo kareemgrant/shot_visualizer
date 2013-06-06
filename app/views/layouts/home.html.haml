@@ -3,26 +3,15 @@
   %head
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
     %title ShotVisualizer - Shot Location Analytics for the NBA
+    %link{:href=>'http://fonts.googleapis.com/css?family=Audiowide', :rel=>'stylesheet', :type=>'text/css'}
 
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
-  %body
-    .navbar.navbar-fixed-top.navbar-inverse
-      .navbar-inner
-        .container
-          %a.btn.btn-navbar{"data-toggle" => 'collapse', "data-target" => '.nav-collapse'}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.brand{:href => '#'} ShotVisualizer
-          .nav-collapse
-            %ul.nav
-              %li.active
-                %a{:href => '#'} Home
-              %li
-                %a{:href => '#about'} About
-              %li
-                %a{:href => '#contact'} Contact
+  %body.home-page
+    = render :partial => "shared/navbar"
 
     = yield
 
+    .container
+      .row
+        = render :partial => "shared/footer"

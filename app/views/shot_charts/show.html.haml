@@ -1,43 +1,12 @@
-
-
--# %form.filter-container
-  
-  -# .row
-  -#   .span3
-  -#     %p Select Season
-  -#     %select
-  -#       %option All Seasons
-  -#       %option 2008-2009
-  -#       %option 2007-2008
-  -#       %option 2006-2007
-  -#   .span3
-  -#     %p Search by Team or Player
-  -#     %input#search.span3{:type => "text", "autocomplete"=>"off", "data-provide"=> "typeahead", "data-items"=>"4"}
-
-  -#   .span3
-  -#     %p Select Game Period
-  -#     %select
-  -#       %option All Quarters
-  -#       %option 1st Quarter
-  -#       %option 2nd Quarter
-  -#       %option 3rd Quarter
-  -#       %option 4th Quarter
-
-  -#   .span2
-  -#     %p Home/Away 
-  -#     %select.span2
-  -#       %option Both
-  -#       %option Home
-  -#       %option Away
-
-
-
 %h3 
   = @player[:name].titleize
 %h4
   Season: #{@player[:season]}
   %br
   %br
+
+%p
+  = link_to 'Back to Team Roster', :back
 .row
   .span7
     %h4 
@@ -60,9 +29,6 @@
 
 
   :javascript
-    var subjects = ['Kevin Durant', 'Russell Westbrook', 'James Harden', 'Serge Iback', 'Oklahoma City Thunder', 'Washington Bullets', 'Kobe Bryant', 'Chris Paul', 'Denver Nuggets'];
-    $('#search').typeahead({source: subjects})
-
     var all_shot_data = gon.shots
 
 

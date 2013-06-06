@@ -1,0 +1,14 @@
+.navbar.navbar-fixed-top.navbar-inverse
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{"data-toggle" => 'collapse', "data-target" => '.nav-collapse'}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      =link_to "ShotVisualizer", root_path, {:class => "brand", :id => "logo"} 
+      .nav-collapse
+        %ul.nav
+          %li
+            =link_to "View Teams", teams_path
+          %li
+            %a{:href => '#contact'} Contact
