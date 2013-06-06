@@ -5,8 +5,10 @@ body {
   padding-bottom: 40px;
 }
 
-.donut_chart {
+#donut_chart {
   margin-top: 10px;
+  width: 380px;
+  height: 180px;
 }
 
 .footer { 
@@ -48,6 +50,52 @@ form.filter-container {
    label {
      margin-right: 25px;
    }
+}
+
+#banner {
+    width: 100%; 
+    height: 40%; 
+    position: relative; 
+    left: 0px; 
+    top: 0px; 
+    z-index: 0;
+}
+
+.stretch {
+    width:100%;
+    height:100%;
+}
+// .banner { height: 300px; color: #FFF; }
+// .banner div {
+//   position: absolute;
+//   bottom: 0;
+//   width: 100%;
+//   background: #000;
+//   background: rgba(0,0,0,0.7);
+// }
+// .banner div p { padding: 10px; }
+.logoWall  {
+
+  border-bottom: solid 2px #999;
+  overflow: hidden;
+  margin-left: -7px;
+  font-size: 10px;
+  list-style-type: none;
+
+  li {
+    float: left;
+    margin-left: 7px;
+    margin-bottom: 20px;
+    width: 150px;
+    text-align: center;
+  }
+
+  img {
+    display: block;
+    margin-bottom: 6px;
+    height: 100px;
+    width: 150px;
+  }
 }
 
 

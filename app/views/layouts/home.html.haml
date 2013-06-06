@@ -3,11 +3,9 @@
   %head
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
     %title ShotVisualizer - Shot Location Analytics for the NBA
+
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
-    = include_gon
-
-
   %body
     .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
@@ -28,18 +26,4 @@
 
     .container
       = yield
-
-      .row-fluid.footer
-        .span4
-          %h3 Information
-          %ul
-            %li
-              %a{:href => "#"} Link
-            %li
-              %a{:href => "#"} Link
-            %li
-              %a{:href => "#"} Link
-            %li
-              %a{:href => "#"} Link
-
 

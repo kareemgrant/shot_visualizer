@@ -55,35 +55,7 @@
   .span5
     %h4 Shot Distribution
 
-    .donut_chart
-      %table.table.table-striped.table-bordered
-        %thead 
-          %tr
-            %th Player Name
-            %th Position
-            %th Age
-        %tbody
-          %tr
-            %td 
-              %a{:href => "#"} Kevin Durant
-            %td Small Forward
-            %td 25
-          %tr
-            %td
-              %a{:href => "#"} Russell Westbrook
-            %td Point Guard
-            %td 24
-          %tr
-            %td 
-              %a{:href => "#"}James Harden
-            %td Shooting Guard
-            %td 24
-          %tr
-            %td 
-              %a{:href => "#"}Serge Ibaka 
-            %td Power Forward
-            %td 23
-
+    #donut-chart
 
 
 
@@ -144,6 +116,16 @@
       render(qtrData);
 
     })
+
+    Morris.Donut({
+      element: 'donut-chart',
+      data: [
+        {label: "Jump Shots", value: 12},
+        {label: "Layups", value: 30},
+        {label: "Pullup Jumpers", value: 20},
+        {label: "Dunks", value: 10}
+      ]
+    });
 
 
 
