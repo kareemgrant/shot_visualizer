@@ -4,9 +4,10 @@ class Team
   field :abbr, type: String
   field :name, type: String
   field :logo_url, type: String
+  field :active, type: Boolean
 
   def self.fetch_all(season = "2008-2009")
-    teams = Team.all.to_ary
+    teams = Team.where(:active.ne => false).to_ary
     team_rosters = []
 
     teams.each do |team|

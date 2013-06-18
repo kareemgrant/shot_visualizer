@@ -19,8 +19,26 @@ a#logo {
   color: #fff; 
 }
 
+.intro {
+  color: #fff;
+  padding-top: 147px;
+
+  .logo {
+    font-size: 42px;
+    margin: 0px 0;
+    font-family: 'Audiowide', cursive;
+  }
+
+  .tagline {
+    margin-top:20px;
+    color: #fff;
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
 ul.footer {
-  list-style-type: none;
+  ist-style-type: none;
   border: none;
 }
 
@@ -56,25 +74,20 @@ form.filter-container {
 }
 
 #banner {
-    // width: 100%; 
     height: 400px; 
-    // position: relative; 
-    // left: 0px; 
-    // top: 0px; 
-    // z-index: 0;
 
     background: url("/assets/basketball-court.jpg")no-repeat top center;
     background-size: 100%;
 
 }
 .value_prop {
+  display: inline;
   p {
-    padding-top: 95px;
     color: #fff;
     font-size: 32px;
     padding-right: 41px;
     font-weight: bold;
-
+    display: inline;
   }
 
 }
